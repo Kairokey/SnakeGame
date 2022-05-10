@@ -1,12 +1,5 @@
 import pygame, sys, time, random
 
-
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
 from pygame.surface import Surface, SurfaceType
 #SPEED OF GAME
 difficulty = 16
@@ -34,7 +27,7 @@ game_window: Surface | SurfaceType = pygame.display.set_mode((frame_size_x, fram
 # Colors (R, G, B)
 black = pygame.Color(0, 0, 0)
 white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
+red = pygame.Color(255, 255, 0)
 green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
 
@@ -59,7 +52,7 @@ score = 0
 # Game Over
 def game_over():
     my_font = pygame.font.SysFont('times new roman', 90)
-    game_over_surface = my_font.render('YOU DIED', True, red)
+    game_over_surface = my_font.render('Project is end', True, red)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
@@ -139,15 +132,15 @@ while True:
     food_spawn = True
 
     # GFX
-    game_window.fill(black)
+    game_window.fill(pygame.Color(255, 230, 243))
     for pos in snake_body:
         # Snake body
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
-        pygame.draw.rect(game_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
+        pygame.draw.rect(game_window, pygame.Color(179, 0, 86), pygame.Rect(pos[0], pos[1], 10, 10))
 
     # Snake food
-    pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+    pygame.draw.rect(game_window, pygame.Color(102, 0, 51), pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
     # Game Over conditions
     # Getting out of bounds
@@ -161,7 +154,7 @@ while True:
             game_over()
 
 
-    show_score(1, white, 'consolas', 20)
+    show_score(1, pygame.Color(204, 102, 153), 'consolas', 20)
     # Refresh game screen
     pygame.display.update()
     # Refresh rate

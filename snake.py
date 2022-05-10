@@ -1,5 +1,3 @@
-# Irfan Chairurrachman
-# Indonesia
 
 import pygame, sys, time, random
 import numpy as np
@@ -20,8 +18,9 @@ else:
 
 
 # Initialise game window
-pygame.display.set_caption('Greedy Best Snake by Irfan Cr')
+pygame.display.set_caption('Snake With Greedy ALGO (DR: SARA)')
 game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
+
 
 
 # Colors (R, G, B)
@@ -30,6 +29,8 @@ white = pygame.Color(255, 255, 255)
 red = pygame.Color(255, 0, 0)
 green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
+GR = pygame.Color(51, 153, 51)
+ZO = pygame.Color(102, 102, 51)
 
 # Show game over message
 def message(msg, color):
@@ -94,13 +95,8 @@ def greedy(direc, pos, goal, body):
 # Main logic
 def main():
 
-    # Difficulty settings
-    # Easy      ->  10
-    # Medium    ->  25
-    # Hard      ->  40
-    # Harder    ->  60
-    # Impossible->  120
-    difficulty = 40
+    # Game speed
+    difficulty = 25
 
     # FPS (frames per second) controller
     fps_controller = pygame.time.Clock()
@@ -181,17 +177,17 @@ def main():
         food_spawn = True
 
         # GFX
-        game_window.fill(black)
+        game_window.fill(pygame.Color(255, 230, 243))
         for pos in snake_body:
             # Snake body
             # .draw.rect(play_surface, color, xy-coordinate)
             # xy-coordinate -> .Rect(x, y, size_x, size_y)
             pos[0] = pos[0] % frame_size_x
             pos[1] = pos[1] % frame_size_y
-            pygame.draw.rect(game_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
+            pygame.draw.rect(game_window, pygame.Color(179, 0, 86), pygame.Rect(pos[0], pos[1], 10, 10))
 
         # Snake food
-        pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+        pygame.draw.rect(game_window, pygame.Color(102, 0, 51), pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
         # Touching the snake body
         if snake_pos in snake_body[1:]:
@@ -215,7 +211,7 @@ def main():
                         time.sleep(1)
                         main()
 
-        show_score(1, white, 'consolas', 20, score)
+        show_score(1, pygame.Color(77, 0, 37), 'consolas', 20, score)
         # Refresh game screen
         pygame.display.update()
         # Refresh rate
